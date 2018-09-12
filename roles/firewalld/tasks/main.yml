@@ -1,0 +1,6 @@
+---
+- name: Copy firewalld shell script template
+  template: src=../templets/firewalld.sh.j2 dest=/tmp/firewalld.sh
+
+- name: run firewalld.sh script
+  command: /usr/bin/sh /tmp/firewalld.sh > /dev/null

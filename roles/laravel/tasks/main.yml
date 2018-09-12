@@ -1,0 +1,21 @@
+---
+- name: Enable remi-php73 repo and install laravel platform dependencies   [Install PHP 7.3]
+  shell: yum --enablerepo  remi-php73 install  git curl nss  php-mbstring php-xml unzip  -y
+
+- name: Install PHP Composer
+  shell: curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/bin --filename=composer
+
+- name: Configure Nginx Virtual Host for Laravel
+  shell: mkdir -p /var/www/laravel
+
+- name: Install Laravel
+  shell: cd /var/www/laravel ; composer create-project laravel/laravel . 
+
+- name: Change Permission
+  shell: chown -R nginx:root /var/www/laravel ; chmod 755 /var/www/laravel/storage
+
+- name: Restart nginx Service
+  service: name=nginx state=restarted enabled=yes
+
+- name: Restart php-fpm Service
+  service: name=php-fpm state=restarted enabled=yes

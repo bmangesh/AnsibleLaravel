@@ -1,0 +1,21 @@
+---
+- hosts: all
+  roles:
+     - firewalld
+
+- hosts: galera_master
+  roles: 
+      - mariadb_gmaster
+
+- hosts: galera_node
+  roles:
+    - mariadb_gnode
+
+- hosts: all
+  roles:
+      - nginx
+      - php
+      - laravel
+
+
+

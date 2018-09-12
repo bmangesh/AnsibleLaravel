@@ -1,0 +1,38 @@
+#! /bin/bash
+
+firewall-cmd --runtime-to-permanent
+firewall-cmd --reload
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost1 }}/32" port protocol="tcp" port="3306" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost1 }}/32" port protocol="tcp" port="4567" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost1 }}/32" port protocol="tcp" port="4568" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost1 }}/32" port protocol="tcp" port="4444" accept'
+
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost2 }}/32" port protocol="tcp" port="3306" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost2 }}/32" port protocol="tcp" port="4567" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost2 }}/32" port protocol="tcp" port="4568" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost2 }}/32" port protocol="tcp" port="4444" accept'
+
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost3 }}/32" port protocol="tcp" port="3306" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost3 }}/32" port protocol="tcp" port="4567" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost3 }}/32" port protocol="tcp" port="4568" accept'
+
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family="ipv4" source address="{{ ghost3 }}/32" port protocol="tcp" port="4444" accept'
+
+
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+
+firewall-cmd --reload
+
+
+
